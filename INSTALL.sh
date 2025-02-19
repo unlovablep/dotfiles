@@ -19,6 +19,13 @@ pushd opt/
   cp ./shbin/* ~/OPT/shbin/
 popd
 
+echo "Downloading jetbrains-mono locally..."
+mkdir -p ~/.local/share/fonts/jetbrains-mono
+wget https://download.jetbrains.com/fonts/JetBrainsMono-2.304.zip
+unzip JetBrainsMono-2.304.zip
+pushd fonts/
+  cp ttf/*.ttf variable/*.ttf ~/.local/share/fonts/jetbrains-mono/
+popd
 
 echo "Patching st-0.9..."
 wget https://dl.suckless.org/st/st-0.9.tar.gz
@@ -35,6 +42,6 @@ tar -xf dmenu-5.2.tar.gz
 pushd dmenu-5.2/
   patch < ../patches/dmenu-5.2-config.patch
   make
-  cp ./dmenu ./dmenu_path ./dmenu_run ~/OPT/bin
+  cp ./dmenu ./dmenu_path ./dmenu_run ./stest ~/OPT/bin
   cp -r ./ ~/OPT/src/dmenu-5.2/
 popd

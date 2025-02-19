@@ -1,4 +1,4 @@
-#!/usr/bin/sbcl --script
+#!/usr/bin/env sbcl --script
 
 ;;; Get args
 (defvar projname (cadr *posix-argv*))

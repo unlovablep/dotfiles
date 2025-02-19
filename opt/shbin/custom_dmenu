@@ -1,2 +1,2 @@
-#!/bin/bash
+#!/usr/bin/env bash
 dmenu_run -l 3 -nb "#2d1523" -nf "#e18bbe" -sf "#2d1523" -sb "#e18bbe"
