@@ -1,0 +1,84 @@
+#!/usr/bin/sbcl --script
+
+;;; Get args
+(defvar projname (cadr *posix-argv*))
+
+(when (equal projname nil)
+  (format t "Missing argument. Please provide project name!~%")
+  (quit))
+
+;;; Load quicklisp
+(load (merge-pathnames "quicklisp/setup.lisp" (user-homedir-pathname)))
+
+;;; Create directories
+(defun ./dir (dirname)
+  (make-pathname :directory (namestring (merge-pathnames dirname)))) 
+
+(ensure-directories-exist (./dir "src"))
+(ensure-directories-exist (./dir "out"))
+
+;;; Write our template files
+(defun write-to-file (fname str)
+  (with-open-file (fil (merge-pathnames fname)
+                       :direction :output
+                       :if-exists :supersede
+                       :if-does-not-exist :create)
+    (format fil str)))
+
+(write-to-file
+  (format nil "./~a.asd" projname)
+  (format nil "(defsystem \"~a\"
+  :description \"Someone forgot to replace this placeholder text!.\"
+  :author \"Me\"
+  :license \"MIT\"
+  :version \"0.1.0\"
+  :components ((:module \"src\"
+                :components
+                ((:file \"package\")
+                 (:file \"main\")
+                 (:file \"lib\"))))
+  :build-operation \"program-op\"
+  :build-pathname \"out/~a\"
+  :entry-point \"~a::main\")~%" projname projname projname))
+
+(write-to-file
+  "./build.lisp"
+  (format nil "#!/usr/bin/sbcl --script
+
+(require :asdf)
+(asdf:load-asd (merge-pathnames \"~a.asd\"))
+(asdf:load-system :~a)
+(asdf:make :~a)~%" projname projname projname))
+
+(write-to-file
+  "./run.lisp"
+  (format nil "#!/usr/bin/sbcl --script
+
+(require :asdf)
+(asdf:load-asd (merge-pathnames \"~a.asd\"))
+(asdf:load-system :~a)
+(~a::main)~%" projname projname projname))
+
+(write-to-file
+  "./src/package.lisp"
+  (format nil "(defpackage #:~a
+  (:use :cl))~%" projname))
+
+(write-to-file
+  "./src/main.lisp"
+  (format nil "(in-package #:~a)
+
+(defun main ()
+  \"Hiya!\"
+  (testprint \"Hello, World~~~~%\"))~%" projname))
+
+(write-to-file
+  "./src/lib.lisp"
+  (format nil "(in-package #:~a)
+
+(defun testprint (str)
+  \"hiya!\"
+  (format t str))~%" projname))
+
+(uiop:run-program '("chmod" "+x" "./build.lisp"))
+(uiop:run-program '("chmod" "+x" "./run.lisp"))

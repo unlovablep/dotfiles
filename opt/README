@@ -1,0 +1,5 @@
+bin/ - compiled binaries
+shbin/ - shell scripts to be included in PATH
+stlib/ - compiled static libraries
+dylib/ - compiled dynamic libraries
+include/ - headers

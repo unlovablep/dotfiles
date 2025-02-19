@@ -1,0 +1,1 @@
+xrandr --output DP-1 --left-of DP-4 --mode 1920x1080 --rate 60 --output DP-4 --primary --mode 1920x1080 --rate 60
