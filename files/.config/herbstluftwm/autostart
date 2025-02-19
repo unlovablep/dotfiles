@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-TERMINAL=st
+TERMINAL=alacritty
 BROWSER=firefox
 BROWSERALT=librewolf
 BROWSERMIN=surf
