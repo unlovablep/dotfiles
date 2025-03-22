@@ -3,7 +3,6 @@
 TERMINAL=alacritty
 BROWSER=firefox
 BROWSERALT=librewolf
-BROWSERMIN=surf
 MENU=~/OPT/shbin/custom_dmenu
 
 # this is a simple config for herbstluftwm
@@ -19,7 +18,7 @@ eval $(dbus-launch --sh-syntax --exit-with-session)
 export DBUS_SESSION_BUS_ADDRESS
 export DBUS_SESSION_BUS_PID
 
-#xsetroot -solid '#1d0c16'
+xsetroot -solid '#1d0c16'
 feh --bg-fill $BG/bottom-right.png $BG/bottom-left.png $BG/top-right.png $BG/top-left.png
 #dex -a -s ${HOME}/.config/autostart/
 #pkill picom
@@ -45,15 +44,12 @@ hc keybind $Mod-Shift-r reload
 hc keybind $Mod-q close
 
 # launchers
-hc keybind $Mod-Return spawn "${TERMINAL:-xterm}" # use your $TERMINAL with xterm as fallback
+hc keybind $Mod-Return spawn "${TERMINAL:-xterm}" -e tmux
 hc keybind $Mod-d spawn "${MENU:-dmenu_run}"
 hc keybind $Mod-l spawn "${BROWSER}"
 hc keybind $Mod-Shift-l spawn "${BROWSERALT}"
-hc keybind $Mod-b spawn "${BROWSERMIN}"
 hc keybind $Mod-Control-space spawn playerctl play-pause
-hc keybind $Mod-v spawn vscodium
-hc keybind $Mod-Shift-v spawn code
-hc keybind $Mod-n spawn "${TERMINAL:-xterm}" -e nvim
+hc keybind $Mod-n spawn "${TERMINAL:-xterm}" -e tmux new nvim
 hc keybind $Mod-e spawn "${TERMINAL:-xterm}" -e lem -i ncurses
 
 hc keybind XF86AudioRaiseVolume spawn amixer sset Master 2%+,2%+

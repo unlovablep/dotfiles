@@ -2,11 +2,9 @@
 alias ls='ls -a --color=auto'
 alias grep='grep --color=auto'
 
-
-alias vim='nvim'
+alias hx='helix'
 alias nv='nvim'
 alias nvqt='nvim-qt'
-alias hx='helix'
 
 alias xi='doas xbps-install -yv'
 alias xr='doas xbps-remove'
@@ -36,3 +34,5 @@ alias ruby='ruby --yjit'
 alias nb='nix-build'
 alias ns='nix-shell'
 alias nsp='nix-shell -p '
+
+alias dn='dub init ' # D-language package

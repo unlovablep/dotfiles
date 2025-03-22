@@ -3,10 +3,10 @@ live_config_reload = true
 ipc_socket = false
 
 [window]
-padding = { x = 2, y = 2 }
+padding = { x = 2, y = 1 }
 dynamic_padding = true
 decorations = "None"
-opacity = 0.8
+opacity = 0.95
 blur = false
 title = "Alacritty"
 dynamic_title = true

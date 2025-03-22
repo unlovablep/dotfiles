@@ -36,10 +36,44 @@ ru() {
 }
 export ru
 
+#np() {
+#    TYPE=$1
+#    NAME=$2
+#    se() {
+#        mkdir $HOME/PROJ/swift/$NAME
+#        pushd $HOME/PROJ/swift/$NAME >/dev/null 2>&1
+#        swift package init --type executable
+#        bash
+#        popd >/dev/null 2>&1
+#    }
+#    $TYPE
+#}
+#export np
+#
+#gitsetup() {
+#    git add .
+#    git commit -m "foo"
+#    git remote add origin git@127.0.0.1:/srv/git/$1
+#}
+#
+#gp() {
+#    git push origin master
+#}
+#
+#gc() {
+#    git clone git@127.0.0.1:/srv/git/$1
+#}
+#
+#gs() {
+#    # set up git to work with something like cargo
+#    eval $(ssh-agent)
+#    ssh-add ~/.ssh/id_rsa
+#}
+
 command_not_found_handle() {
     local input_command="$*"
     
-    local valid_commands=("ru")
+    local valid_commands=("ru" "np")
     for cmd in "${valid_commands[@]}"; do
         if [[ "$input_command" == "$cmd"* ]]; then
             local remaining_input="${input_command:${#cmd}}"
