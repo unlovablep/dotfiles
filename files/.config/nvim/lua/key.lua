@@ -4,6 +4,7 @@ vim.api.nvim_set_keymap('n', '<C-M-t>', ':TagbarToggle<CR>', { noremap = true })
 
 vim.api.nvim_set_keymap('n', '<C-t>', ':tabnew<CR>', { noremap = true });
 vim.api.nvim_set_keymap('n', '<M-t>', ':tabclose<CR>', { noremap = true });
+vim.api.nvim_set_keymap('n', '<C-d>', ':tab split<CR> <C-]>', {});
 
 vim.api.nvim_set_keymap('n', '<M-Right>', ':tabnext<CR>', { noremap = true });
 vim.api.nvim_set_keymap('n', '<M-Left>', ':tabprevious<CR>', { noremap = true });

@@ -48,6 +48,13 @@ vim.api.nvim_create_autocmd(
         command = "set filetype=lisp",
     }
 )
+vim.api.nvim_create_autocmd(
+    {"BufnewFile", "BufRead"},
+    {
+        pattern = "*.v",
+        command = "set filetype=v",
+    }
+)
 
 require('colorizer').setup()
 

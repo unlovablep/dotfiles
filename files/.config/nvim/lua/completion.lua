@@ -11,10 +11,55 @@ lspconfig.zls.setup{ -- zig
         buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     end,
 }
+vim.g.zig_fmt_autosave = 0 -- disable auto formatting on save
+
+lspconfig.serve_d.setup{
+    cmd = { "serve-d" },
+    filetypes = { "d" },
+    on_attach = function(client, bufnr)
+        local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+        local opts = { noremap=true, silent=true }
+
+        buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+        buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+        buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    end,
+}
+
+lspconfig.erlangls.setup{
+    cmd = { "erlang_ls" },
+    filetypes = { "erlang" },
+    on_attach = function(client, bufnr)
+        local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+        local opts = { noremap=true, silent=true }
+
+        buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+        buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+        buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    end,
+}
+
+lspconfig.elixirls.setup{
+    cmd = { "elixir-ls" },
+    filetypes = { "elixir" },
+    on_attach = function(client, bufnr)
+        local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+        local opts = { noremap=true, silent=true }
+
+        buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+        buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+        buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    end,
+}
 
 lspconfig.nim_langserver.setup{
     cmd = { 'nimlangserver' },
     filetypes = { 'nim' },
+    settings = {
+        nim = {
+            timeout = 600000,
+        },
+    },
     on_attach = function(client, bufnr)
         local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
         local opts = { noremap=true, silent=true }
@@ -27,9 +72,34 @@ lspconfig.nim_langserver.setup{
 
 lspconfig.nixd.setup{}
 
+lspconfig.ols.setup{
+    cmd = { '/home/lily/OPT/bin/ols' },
+    on_attach = function(client, bufnr)
+        local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+        local opts = { noremap=true, silent=true }
+
+        buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+        buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+        buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    end,
+}
+
 lspconfig.ocamllsp.setup{
     cmd = { 'ocamllsp' },
     filetypes = { 'ocaml', 'menhir', 'ocamlinterface', 'ocamllex', 'reason', 'dune' },
+    on_attach = function(client, bufnr)
+        local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+local opts = { noremap=true, silent=true }
+
+        buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+        buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+        buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    end,
+}
+
+lspconfig.v_analyzer.setup{
+    cmd = { '/home/lily/.config/v-analyzer/bin/v-analyzer' },
+    filetypes = { 'v', 'vv', 'vsh', 'vlang' },
     on_attach = function(client, bufnr)
         local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
         local opts = { noremap=true, silent=true }
@@ -121,7 +191,7 @@ lspconfig.clojure_lsp.setup{
 
 lspconfig.clangd.setup{
     cmd = {"clangd"},
-    filetypes = {"c"},
+    filetypes = {"c", "cpp"},
     on_attach = function(client, bufnr)
         local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
         local opts = { noremap=true, silent=true }

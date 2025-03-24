@@ -1,1 +1,1 @@
-exec dbus-run-session herbstluftwm
+exec dbus-run-session /usr/bin/herbstluftwm

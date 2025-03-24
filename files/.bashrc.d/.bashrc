@@ -16,7 +16,7 @@ append_path () {
 
 export append_path
 
-append_path "$HOME/BIN"
+PATH="$HOME/BIN:$HOME/OPT/shbin/:"$PATH
 append_path "$HOME/.nimble/bin"
 append_path "$HOME/common-lisp/lem"
 append_path "$HOME/.ghcup/bin"
@@ -36,7 +36,7 @@ for file in ~/.bashrc.d/*.sh; do
     fi
 done
 
-[ -f $HOME/.cargo/env ] && source "$HOME/.cargo/env"
+source "$HOME/.cargo/env"
 source "$HOME/OPT/env"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!

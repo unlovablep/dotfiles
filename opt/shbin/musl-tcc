@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+[ -z $MUSL ] && MUSL="/home/$(whoami)/MUSL/"
+
+tcc \
+  -static \
+  -nostdlib -nostdinc \
+  -L$MUSL/lib -I$MUSL/include \
+  "$@" \
+  $MUSL/lib/crt1.o $MUSL/lib/crti.o $MUSL/lib/crtn.o \
+  -lc
